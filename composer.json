@@ -1,0 +1,41 @@
+{
+  "name": "coderslab/laravel-notify",
+  "description": "Flexible flash notifications for Laravel",
+  "keywords": ["Laravel", "laravel-notify", "notification"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Arthur Monney",
+      "email": "monneylobe@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "~8.0",
+    "illuminate/support": "^8.0|^9.0|^10.0"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.0",
+    "phpunit/phpunit": "^8.0|^9.0",
+    "laravel/pint": "^1.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "coderslab\\Notify\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "coderslab\\Notify\\LaravelNotifyServiceProvider"
+      ],
+      "aliases": {
+        "Notify": "coderslab\\Notify\\Facades\\LaravelNotify"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
