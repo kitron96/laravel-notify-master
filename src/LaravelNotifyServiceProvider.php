@@ -4,6 +4,7 @@ namespace coderslab\Notify;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Jenssegers\Agent\Agent as Agent;
 
 final class LaravelNotifyServiceProvider extends ServiceProvider
 {
