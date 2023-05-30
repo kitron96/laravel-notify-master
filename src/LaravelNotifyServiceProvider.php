@@ -13,16 +13,15 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
     {
         $this->registerBladeDirective();
         $this->registerPublishables();
-        
-        $Agent = new Agent();
-        if ($Agent->isMobile()) {
-            $viewPath = __DIR__.'/../resources/views/mobile';
-        } else {
-            $viewPath = __DIR__.'/../resources/views/web';
-        }
-    
-        
-        $this->loadViewFrom($viewPath);
+            $Agent = new Agent();
+            if ($Agent->isMobile()) {
+                $viewPath = __DIR__.'/../resources/views/mobile';
+            } else {
+                $viewPath = __DIR__.'/../resources/views/web';
+            }
+
+
+        $this->loadViewsFrom($viewPath, 'notify');
     }
 
     public function register(): void
