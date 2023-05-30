@@ -47,9 +47,14 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
     public function registerPublishables(): void
     {
         $this->publishes([
-            __DIR__.'/../public' => public_path('mobile/vendor/coderslab/laravel-notify'),
-            __DIR__.'/../public' => public_path('web/vendor/coderslab/laravel-notify'),
+            __DIR__.'/../resources/views' => views_path('mobile/vendor/coderslab/laravel-notify'),
+            __DIR__.'/../resources/views' => views_path('web/vendor/coderslab/laravel-notify'),
         ], 'notify-assets');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => public_path('mobile/vendor/coderslab/laravel-notify'),
+            __DIR__.'/../resources/views' => public_path('web/vendor/coderslab/laravel-notify'),
+        ], 'notify');
 
         $this->publishes([
             __DIR__.'/../config/notify.php' => config_path('notify.php'),
