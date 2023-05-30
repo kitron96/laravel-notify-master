@@ -9,7 +9,6 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        resource_path
         $this->registerBladeDirective();
         $this->registerPublishables();
 
