@@ -21,9 +21,12 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
             $viewPath = __DIR__.'/../resources/views/web';
         }
 
-        return array {
-        $this->loadViewsFrom->array($viewPath);
-        }
+        return array(
+            'paths' => array($viewPath),
+            'compiled' => env(
+                'VIEW_COMPILED_PATH',
+                realpath(storage_path('framework/views'))
+            ),
     }
 
     public function register(): void
