@@ -20,7 +20,8 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
         } else {
             $viewPath = __DIR__.'/../resources/views/web';
         }
-
+    
+        
         return array(
             'paths' => array($viewPath),
             'compiled' => env(
