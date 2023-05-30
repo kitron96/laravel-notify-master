@@ -9,10 +9,19 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        resource_path
         $this->registerBladeDirective();
         $this->registerPublishables();
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'notify');
+        
+        $Agent = new Agent();
+        if ($Agent->isMobile()) {
+        $viewPath = resource_path('views/mobile');
+        } else {
+        $viewPath = resource_path('views/web');
+        }
+
+        $this->loadViewsFrom($viewPath, 'notify');
     }
 
     public function register(): void
@@ -38,7 +47,7 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
     public function registerPublishables(): void
     {
         $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/coderslab/laravel-notify'),
+            __DIR__.'/../resources/views' => resource_path('views/web/vendor/coderslab/laravel-notify'),
         ], 'notify-assets');
 
         $this->publishes([
