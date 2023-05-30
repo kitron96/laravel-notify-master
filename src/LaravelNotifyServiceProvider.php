@@ -4,8 +4,6 @@ namespace coderslab\Notify;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Jenssegers\Agent\Agent as Agent;
-
 
 final class LaravelNotifyServiceProvider extends ServiceProvider
 {
@@ -13,15 +11,8 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
     {
         $this->registerBladeDirective();
         $this->registerPublishables();
-            $Agent = new Agent();
-            if ($Agent->isMobile()) {
-                $viewPath = __DIR__.'/../resources/views/mobile';
-            } else {
-                $viewPath = __DIR__.'/../resources/views/web';
-            }
 
-
-        $this->loadViewsFrom($viewPath, 'notify');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'notify');
     }
 
     public function register(): void
@@ -47,12 +38,8 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
     public function registerPublishables(): void
     {
         $this->publishes([
-            __DIR__.'/../resources/views' =>  base_path('resources/views/web/vendor/coderslab/laravel-notify'),
-        ], 'notify-assets-web');
-
-        $this->publishes([
-            __DIR__.'/../resources/views' =>  base_path('resources/views/mobile/vendor/coderslab/laravel-notify'),
-        ], 'notify-assets-mobile');
+            __DIR__.'/../public' => public_path('vendor/coderslab/laravel-notify'),
+        ], 'notify-assets');
 
         $this->publishes([
             __DIR__.'/../config/notify.php' => config_path('notify.php'),
