@@ -22,7 +22,7 @@ final class LaravelNotifyServiceProvider extends ServiceProvider
         }
 
 
-        $this->loadViewsFromarray->$viewPath;
+        $this->loadViewsFrom->$viewPath;
     }
 
     public function register(): void
