@@ -1,5 +1,5 @@
 @if (session()->get('notify.model') === 'toast')
-    <div class="notify fixed inset-0 z-10 flex items-end justify-end px-1 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
+    <div class="notify fixed inset-0 z-10 flex items-end justify-end px-2 py-4 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
         <div
             x-data="{ show: @if(session()->get('notify.model') === 'toast') true @else false @endif }"
             x-init="setTimeout(() => { show = true }, 500)"
@@ -21,7 +21,7 @@
             ])
         >
             <div class="relative rounded-lg shadow-xs overflow-hidden">
-                <div class="p-4">
+                <div class="p-2">
                     <div class="flex items-center">
                         @if(session()->get('notify.type') === 'success')
                             <div class="inline-flex items-center bg-gradient-to-r from-green-600 to-green-800 p-2 text-white text-sm rounded-full shrink-0">
