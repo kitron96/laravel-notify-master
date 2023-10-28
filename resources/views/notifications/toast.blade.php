@@ -1,5 +1,5 @@
 @if (session()->get('notify.model') === 'toast')
-    <div class="notify fixed inset-0 z-10 flex items-end justify-end px-2 py-4 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
+    <div class="notify fixed inset-0 z-10 flex items-end justify-end px-2 py- pointer-events-none sm:p-6 sm:items-start sm:justify-end">
         <div
             x-data="{ show: @if(session()->get('notify.model') === 'toast') true @else false @endif }"
             x-init="setTimeout(() => { show = true }, 500)"
@@ -12,8 +12,8 @@
             x-transition:leave-end="opacity-0"
             @class([
                 'pointer-events-auto w-full max-w-sm overflow-hidden shadow-lg rounded-lg border-2',
-                'bg-white' => config('notify.theme') === 'light',
-                'bg-stone-900' => config('notify.theme') !== 'dark',
+                'bg-white dark:bg-gray-800' => config('notify.theme') === 'light',
+                'bg-slate-800' => config('notify.theme') !== 'light',
                 'border-green-500' => session()->get('notify.type') === 'success',
                 'border-yellow-500' => session()->get('notify.type') === 'warning',
                 'border-blue-500' => session()->get('notify.type') === 'info',
@@ -48,6 +48,7 @@
                             </div>
                         @endif
                         <div class="ml-4 w-0 flex-1">
+                            <x-notify::notify-title :title="session()->get('notify.title') ?? session()->get('notify.type')" />
                             <x-notify::notify-content :content="session()->get('notify.message')" />
                         </div>
                         <div class="ml-4 flex shrink-0">
