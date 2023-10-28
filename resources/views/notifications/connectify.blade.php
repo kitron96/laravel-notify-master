@@ -1,5 +1,5 @@
 @if (session()->get('notify.model') === 'connect')
-    <div class="notify fixed inset-0 flex items-end justify-end px-2 py-3 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
+    <div class="notify fixed inset-0 flex items-end justify-end px-1 py-1 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
         <div
             x-data="{ show: @if(session()->get('notify.model') === 'connect') true @else false @endif }"
             x-init="setTimeout(() => { show = true }, 750)"
@@ -13,7 +13,7 @@
             @class([
                 'pointer-events-auto max-w-sm w-full shadow-lg rounded-lg border-t-4',
                 'bg-white' => config('notify.theme') === 'light',
-                'bg-slate-800' => config('notify.theme') !== 'light',
+                'bg[#fff] dark:bg-[#17181a]' => config('notify.theme') !== 'light',
                 'border-green-600' => session()->get('notify.type') === 'success',
                 'border-red-600' => session()->get('notify.type') === 'error',
             ])
