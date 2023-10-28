@@ -13,7 +13,7 @@
             @class([
                 'pointer-events-auto w-full max-w-sm overflow-hidden shadow-lg rounded-lg border-2',
                 'bg-white dark:bg-gray-800' => config('notify.theme') === 'light',
-                'bg-gray-800' => config('notify.theme') !== 'dark',
+                'bg-gray-800' => config('notify.theme') !== 'light',
                 'border-green-500' => session()->get('notify.type') === 'success',
                 'border-yellow-500' => session()->get('notify.type') === 'warning',
                 'border-blue-500' => session()->get('notify.type') === 'info',
@@ -21,7 +21,7 @@
             ])
         >
             <div class="relative rounded-lg shadow-xs overflow-hidden">
-                <div class="p-2">
+                <div class="p-4">
                     <div class="flex items-center">
                         @if(session()->get('notify.type') === 'success')
                             <div class="inline-flex items-center bg-gradient-to-r from-green-600 to-green-800 p-2 text-white text-sm rounded-full shrink-0">
