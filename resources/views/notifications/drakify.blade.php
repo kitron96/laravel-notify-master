@@ -1,47 +1,47 @@
-@if (session()->get('notify.model') === 'connect')
-    <div class="notify fixed inset-0 flex items-end justify-end px-1 py-1 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
+@if (session()->get('notify.model') === 'drake')
+    <div class="notify fixed inset-0 flex items-end justify-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
         <div
-            x-data="{ show: @if(session()->get('notify.model') === 'connect') true @else false @endif }"
-            x-init="setTimeout(() => { show = true }, 750)"
-            x-show="show"
+            x-data="{ show: @if(session()->get('notify.model') === 'drake') true @else false @endif }"
             x-transition:enter="transform ease-out duration-300 transition"
             x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
             x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
             x-transition:leave="transition ease-in duration-100"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            @class([
-                'pointer-events-auto max-w-sm w-full shadow-lg rounded-lg border-t-4',
-                'bg-white' => config('notify.theme') === 'light',
-                'bg[#fff] dark:bg-[#17181a]' => config('notify.theme') !== 'light',
-                'border-green-600' => session()->get('notify.type') === 'success',
-                'border-red-600' => session()->get('notify.type') === 'error',
-            ])
+            class="max-w-sm w-full shadow-lg rounded-lg pointer-events-auto"
         >
-            <div class="relative rounded-lg shadow-xs overflow-hidden">
-                <div class="p-4">
-                    <div class="flex items-start">
-                        @if(session()->get('notify.type') === 'success')
-                            <div class="inline-flex items-center bg-gradient-to-r from-green-600 to-green-800 p-2 text-white text-sm rounded-full shrink-0">
-                                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-                                </svg>
+            <div class="h-40 relative rounded-md shadow-xs overflow-hidden">
+                @if(session()->get('notify.type') === 'success')
+                    <img class="absolute inset-0" src="{{ asset('/vendor/coderslab/laravel-notify/images/drake-success.jpg') }}" alt="">
+                    <div class="bg-green-500 absolute inset-0 opacity-75"></div>
+                @else
+                    <img class="absolute inset-0" src="{{ asset('/vendor/coderslab/laravel-notify/images/drake-error.jpg') }}" alt="">
+                    <div class="bg-red-500 absolute inset-0 opacity-75"></div>
+                @endif
+                <div class="p-4 relative z-10">
+                    @if(session()->get('notify.type') === 'success')
+                        <div class="flex items-start">
+                            <div class="flex flex-col space-y-3 p-4 sm:p-6">
+                                <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-white rounded-full">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="check w-6 h-6 text-green-600">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </span>
+                                <h4 class="text-white font-semibold text-xl leading-6">{{ __('Success') }}</h4>
                             </div>
-                        @endif
-                        @if(session()->get('notify.type') === 'error')
-                            <div class="inline-flex items-center bg-gradient-to-r from-red-600 to-red-800 p-2 text-white text-sm rounded-full shrink-0">
-                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                </svg>
+                        </div>
+                    @else
+                        <div class="flex justify-end">
+                            <div class="flex flex-col space-y-3 p-4 sm:p-6 text-right">
+                                <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-white rounded-full">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="check w-6 h-6 text-red-600">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </span>
+                                <h4 class="text-white font-semibold text-xl leading-6">{{ __('Error') }}</h4>
                             </div>
-                        @endif
-                        <div class="ml-6 w-0 flex-1">
-                            <x-notify::notify-content :content="session()->get('notify.message')" />
                         </div>
-                        <div class="ml-4 flex-shrink-0 flex">
-                            <x-notify::button />
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
