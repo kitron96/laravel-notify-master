@@ -12,8 +12,7 @@
             x-transition:leave-end="opacity-0"
             @class([
                 'pointer-events-auto w-full max-w-sm overflow-hidden shadow-lg rounded-lg border-2',
-                'bg-white dark:bg-[#222529]' => config('notify.theme') === 'light',
-                'bg-slate-800' => config('notify.theme') !== 'light',
+                'bg-white dark:bg-[#222529]' => config('notify.theme') !== 'light',
                 'border-green-500' => session()->get('notify.type') === 'success',
                 'border-yellow-500' => session()->get('notify.type') === 'warning',
                 'border-blue-500' => session()->get('notify.type') === 'info',
