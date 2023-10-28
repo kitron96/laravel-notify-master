@@ -1,5 +1,5 @@
 @if (session()->get('notify.model') === 'toast')
-    <div class="notify fixed inset-0 z-10 flex items-end justify-end px-2 py- pointer-events-none sm:p-6 sm:items-start sm:justify-end">
+    <div class="notify fixed inset-0 z-10 flex items-end justify-end px-1 py-2 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
         <div
             x-data="{ show: @if(session()->get('notify.model') === 'toast') true @else false @endif }"
             x-init="setTimeout(() => { show = true }, 500)"
